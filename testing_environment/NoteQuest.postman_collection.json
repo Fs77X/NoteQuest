@@ -1,0 +1,961 @@
+{
+	"info": {
+		"_postman_id": "9492f402-0589-49b5-a4a3-c3c778d44497",
+		"name": "NoteQuest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "upload_file-> POST: notes | PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c7c29aa-3f1a-4481-bc87-90238ced7e10",
+						"exec": [
+							"pm.test('POST: notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"message\"] != \"File uploaded\" || jsonData[\"status\"] != true){",
+							"        pm.expect.fail()",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1145166d-a4c3-4932-9819-7fd9637d4e42",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/home/mehul/Downloads/ECE101_Midterm.pdf"
+						},
+						{
+							"key": "user",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/upload_file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload_file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload_file-> POST: notes | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0ca9785-56ff-4811-b160-fd6cfa13e7e4",
+						"exec": [
+							"pm.test('POST: notes | PASS', function(){",
+							"    pm.response.to.have.status(400)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"message\"] != \"Bad request\" || jsonData[\"status\"] != false){",
+							"        pm.expect.fail()",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1fab764f-b8b2-4173-8d0c-69fbf8313481",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/home/mehul/Downloads/ECE101_Midterm.pdf"
+						},
+						{
+							"key": "user",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/upload_file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload_file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: notes | PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bd5a3e9-a600-417e-a057-13ffb5112338",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(!jsonData[\"file\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=file&class=TEST&prof=TEST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "file"
+						},
+						{
+							"key": "class",
+							"value": "TEST"
+						},
+						{
+							"key": "prof",
+							"value": "TEST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: notes | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11954aa4-61b0-48ad-b8a2-f8806b7b13f4",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(400)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"file\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "file"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: prof | PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82767662-429a-4b29-9f6c-bf4a877409cc",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(!jsonData[\"prof\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=prof&class=TEST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "prof"
+						},
+						{
+							"key": "class",
+							"value": "TEST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: prof | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5de926d8-31f8-4410-8a8e-c1d928172390",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(400)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"prof\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "file"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: class | PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df20ffbd-8516-4f18-96ba-507504fae9f2",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(!jsonData[\"classes\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=class",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "class"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_data -> GET: class | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2007735e-517f-423d-bf85-5cfdc933af37",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(400)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"classes\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_data?mode=ye",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_data"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "ye"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_class_codes -> GET: class codes |PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f7b5c97-c0c1-410a-87bf-a6760d6c06d2",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(!jsonData[\"codes\"]){",
+							"        pm.expect.fail()",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "prof",
+							"value": "TEST",
+							"type": "text"
+						},
+						{
+							"key": "mode",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/send_class_codes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"send_class_codes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_email-> POST: email | PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8c70948-3fa8-4d29-a7a2-2d67fac1e40f",
+						"exec": [
+							"pm.test('POST: notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"message\"] != \"good\"){",
+							"        pm.expect.fail()",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d4efa94e-a590-411d-afbc-c10c108d80a3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@ucsc.edu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/verify_email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"verify_email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_email-> POST:forbidden email | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13e13680-94a9-41d1-92b9-41388de1e20f",
+						"exec": [
+							"pm.test('POST: notes | PASS', function(){",
+							"    pm.response.to.have.status(403)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"message\"] == \"good\"){",
+							"        pm.expect.fail()",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "09533fdb-9d80-4d4e-8519-c7b30664799f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@TEST.TEST",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/verify_email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"verify_email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_email-> POST: no email | FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0db9821d-f7b2-4854-b8b0-98a2760aa9f6",
+						"exec": [
+							"pm.test('POST: notes | PASS', function(){",
+							"    pm.response.to.have.status(400)",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData[\"message\"] == \"good\"){",
+							"        pm.expect.fail()",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8ba9da32-df52-4002-8bfc-b7c5714c662a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@ucsc.edu",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/verify_email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"verify_email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rating -> GET: rating |PASS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b229bd8f-3bb2-4d81-b9f3-8c9dbc45929c",
+						"exec": [
+							"pm.test('GET:notes | PASS', function(){",
+							"    pm.response.to.have.status(200)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "class",
+							"value": "CSE130",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "prof",
+							"value": "HARRISION",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "url",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/get_rating?user=TEST&mode=upvote&class=TEST&prof=TEST&url=https://drive.google.com/file/u/0/d/1RTrkpRUjuPJXCqDKoxXgIDCAGdmMIUzc/view",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get_rating"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "TEST"
+						},
+						{
+							"key": "mode",
+							"value": "upvote"
+						},
+						{
+							"key": "class",
+							"value": "TEST"
+						},
+						{
+							"key": "prof",
+							"value": "TEST"
+						},
+						{
+							"key": "url",
+							"value": "https://drive.google.com/file/u/0/d/1RTrkpRUjuPJXCqDKoxXgIDCAGdmMIUzc/view"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
