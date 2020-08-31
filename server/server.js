@@ -68,10 +68,7 @@ class Server{
          await verify.verify_email(req, res)
       })
 
-      // purpose: set up the port we should be listening on
-      this.app.listen(PORT,function(){
-         console.log("connected and open on port " + PORT)
-      })
+
 
 
    }
@@ -80,4 +77,4 @@ class Server{
 }
 
 //below constructs and starts our server
-var server = new Server()
+module.exports = Server;
