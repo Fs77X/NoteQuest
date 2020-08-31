@@ -160,14 +160,21 @@ const Create = (props) => {
             }}>
                 {/* Grid uses CSS Flexbox to organize the form elements (in column)*/}
                 <Grid container spacing = {2}>
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
                         {/* Getting Subject, inputRef gets the value from the Select menu from name subject */}
                         <FormControl required variant="outlined">
-                            <InputLabel 
-                            htmlFor="subjectPick" 
-                            color="secondary">
-                                Subject:
-                            </InputLabel>
+                            {/* <span style={{ fontSize: '0.5rem' }}> */}
+                                <InputLabel 
+                                htmlFor="subjectPick" 
+                                color="secondary"
+                                >
+                                <span style={{ fontSize: '0.7rem' }}>
+                                    Subject:
+
+                                </span>
+                                
+                                </InputLabel>
+                            {/* </span> */}
                             <Select
                             native
                             value={subjSelect}
