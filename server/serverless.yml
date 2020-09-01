@@ -1,8 +1,7 @@
 service: notequest #Name of your App
-package:
-  exclude:
-    - node_modules/**
-    - venv/**
+# package:
+#   exclude:
+#     - node_modules/**
 provider:
  name: aws
  runtime: nodejs12.x # Node JS version

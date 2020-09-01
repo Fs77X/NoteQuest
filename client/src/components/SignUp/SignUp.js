@@ -51,7 +51,7 @@ const SignUp = () => {
         } else if (!name) {
             alert('Please put your name')
         } else if (name !== "" && password !== "" && email !== "") {
-            await Axios.post('http://localhost:8080/verify_email', formData).then(res => {
+            await Axios.post('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/verify_email', formData).then(res => {
                 valid = true
             }).catch(err => {
                 try {

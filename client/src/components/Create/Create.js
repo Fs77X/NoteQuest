@@ -34,7 +34,7 @@ const Create = (props) => {
     //handles uploading of the document and then redirects or 
     //if it didn't upload then report to user something happened and try again
     const upload = async (formData, combStr) => {
-        const res = await axios.post("http://localhost:8080/upload_file", formData); 
+        const res = await axios.post("https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/upload_file", formData); 
         const resdat = res.data
         if(resdat.status === true){
             alert("Notes uploaded to class: " + combStr)
@@ -93,7 +93,7 @@ const Create = (props) => {
 
     //sets option for getting class codes
     const get_class_codes = async() => {
-        let response = await axios.get('http://localhost:8080/send_class_codes')
+        let response = await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/send_class_codes')
         const data = await response.data;
         const blob = data["codes"]
         let codes = processBlob(blob)

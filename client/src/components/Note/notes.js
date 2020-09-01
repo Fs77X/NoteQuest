@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 //function handles getting notes with class and professor picked by user
 async function getnotes(prof, classSelected) {
-    let response = await axios.get('http://localhost:8080/send_data?mode=file&class=' + classSelected + '&prof=' + prof)
+    let response = await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/send_data?mode=file&class=' + classSelected + '&prof=' + prof)
     let data = await response.data
     const blob = await data["file"]
     return blob
@@ -27,7 +27,7 @@ function processBlob(blob){
 
 //function for returning professors from class selected
 async function getProfs(classSelected) {
-    let response = await axios.get('http://localhost:8080/send_data?mode=prof&class='.concat(classSelected))
+    let response = await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/send_data?mode=prof&class='.concat(classSelected))
     let data = await response.data;
     const blob = data["prof"]
     let profs = processBlob(blob)
@@ -103,7 +103,7 @@ const Note = (props) => {
 
     //getClasses returns classes in processed array with processBlob for select menu
     const getClasses = async() => {
-        const response = await axios.get('http://localhost:8080/send_data?mode=class')
+        const response = await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/send_data?mode=class')
         const data = await response.data;
         const blob = data["classes"]
         let classes = processBlob(blob)

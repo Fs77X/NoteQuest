@@ -42,7 +42,7 @@ function MNotes(props) {
                 const user = props.user.displayName
                 //if color changed to gray, then unupvote, otherwise upvote
                 if(like === false){
-                    await axios.get('http://localhost:8080/get_rating?user=' + user + '&mode=unupvote&class=' + classSel + '&prof=' + profSel + '&url=' + props.link, opts).then(res =>{
+                    await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/get_rating?user=' + user + '&mode=unupvote&class=' + classSel + '&prof=' + profSel + '&url=' + props.link, opts).then(res =>{
                         if(res.status !== 200){
                             alert('Uh oh, something went wrong, try again later')
                         }
@@ -51,7 +51,7 @@ function MNotes(props) {
                     })
 
                 } else{
-                    await axios.get('http://localhost:8080/get_rating?user=' + user + '&mode=upvote&class=' + classSel + '&prof=' + profSel + '&url=' + props.link, opts).then(res =>{
+                    await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/get_rating?user=' + user + '&mode=upvote&class=' + classSel + '&prof=' + profSel + '&url=' + props.link, opts).then(res =>{
                         if(res.status !== 200){
                             alert('Uh oh, something went wrong, try again later')
                         }
@@ -90,7 +90,7 @@ function MNotes(props) {
             const profSel = props.profSel
             const classSel = props.classSel
             const user = props.user
-            const res = await axios.get('http://localhost:8080/get_rating?mode=status&class=' + classSel + '&prof=' + profSel + '&url=' + props.link)
+            const res = await axios.get('https://zdmqmzovcf.execute-api.us-west-2.amazonaws.com/production/get_rating?mode=status&class=' + classSel + '&prof=' + profSel + '&url=' + props.link)
             if(res !== {}){
                 const data = await res.data
                 if(data.upvoted){
