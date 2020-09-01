@@ -1,5 +1,8 @@
 service: notequest #Name of your App
-
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
 provider:
  name: aws
  runtime: nodejs12.x # Node JS version
@@ -9,8 +12,12 @@ provider:
  region: us-west-2 # AWS region
 
 functions:
- api:
+  api:
    handler: lambda.handler
    events:
-     - http: ANY {proxy+}
-     - http: ANY /
+    - http: ANY {proxy+}
+    - http: ANY /
+  sendClassCodes:
+    handler: lambda.handler
+    events:
+      - http: 'GET /send_class_codes'
